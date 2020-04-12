@@ -1,0 +1,644 @@
+.nameHotel{
+    height: 30%;
+    margin: auto;
+    margin-top: 15%;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    width: 60%;
+    font-size: 600%;
+}
+
+.center{
+    margin: auto;
+    padding: 10px;
+    width: 60%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.form{
+    margin:auto;
+    margin-top: 5%;
+    padding:auto;
+    width: 60%;
+    font-weight: 500;
+}
+
+.label{
+    margin-top: 20px;
+}
+
+input[type=email]{
+    width: 100%;
+    margin: 8px;
+    padding: 12px 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #31312E;
+    /* border: 1px solid #31312E; */
+    /* border-radius: 4px;  */
+}
+
+input[type=password]{
+    width: 100%;
+    margin: 8px;
+    padding: 12px 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #31312E;
+    /* border: 1px solid #31312E; */
+    /* border-radius: 4px;  */
+}
+
+select{
+    width: 100%;
+    margin: 8px;
+    padding: 12px 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #31312E;
+    /* border: 1px solid #31312E; */
+    /* border-radius: 4px;  */
+}
+
+input[type=date]{
+    width: 100%;
+    margin: 8px;
+    padding: 12px 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #31312E;
+    /* border: 1px solid #31312E; */
+    /* border-radius: 4px;  */
+}
+
+input[type=number]{
+    width: 100%;
+    margin: 8px;
+    padding: 12px 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #31312E;
+    /* border: 1px solid #31312E; */
+    /* border-radius: 4px;  */
+}
+
+input[type=submit]{
+    background-color: #31312E;
+    width: 100%;
+    margin: 8px;
+    padding: 12px 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    color: whitesmoke;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+input[type=date]:hover{
+    color: whitesmoke;
+    background-color: #31312E;
+    border-radius: 4px; 
+}
+
+input[type=number]:hover{
+    color: whitesmoke;
+    background-color: #31312E;
+    border-radius: 4px; 
+}
+
+select:hover{
+    color: whitesmoke;
+    background-color: #31312E;
+    border-radius: 4px; 
+}
+
+input[type=submit]:hover{
+    background-color: black;
+}
+
+.result-list{
+    width: 60%;
+    margin: auto;
+}
+
+.result{
+    margin: auto;
+    margin-top: 100px;
+    padding: 10px;
+    width: 100%;
+    background-color:#31312E;
+    color:whitesmoke;
+    text-align: center;
+    font-size: medium;
+}
+.list{
+    padding: 10px;
+    width: 100%;
+    background-color:whitesmoke;
+}
+
+.row{
+    border-bottom: 1px solid #31312E;
+}
+
+.typeroom{
+    width: 20%;
+    text-align: left;
+}
+
+.number{
+    width: 30%;
+    text-align: left;
+}
+
+.iconPerson{
+    width: 5%;
+    padding: auto;
+    text-align: right;
+}
+
+.amount{
+    width: 8%;
+    padding-left: 1%;
+    text-align: left
+}
+
+.iconCash{
+    width: 5%;
+    text-align: right;
+}
+
+.course{
+    width: 10%;
+    padding-left: 1%;
+    text-align: left;
+}
+
+.iconArrow{
+    width: 7%;
+    padding-right: 1%;
+    text-align: right;
+}
+
+.testRoom{
+    margin-top: 200px;
+}
+
+.room{  
+    /* border: 1px solid #31312E; */
+    color: #31312E;
+    margin: auto;
+    width: 70%;
+}
+
+.headA{
+    display: inline-block;
+    width: 45%;
+    font-size: 300%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 600;
+    text-align: left;
+}
+
+.headB{
+    display: inline-block;
+    width: 45%;
+    margin-left: 9.6%;
+    font-size: 360%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    text-align: right;
+}
+
+.roomDetail{  
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    /* border: 1px solid #31312E; */
+    color: #31312E;
+    margin: auto;
+    margin-top: 100px;
+    width: 70%;
+}
+
+.formDetail{
+    margin-top: 30px;
+}
+
+
+.forms{
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+.col-25{
+    float: left;
+    width: 25%;
+    margin-top: 16px;
+}
+
+.col-75{
+    float: left;
+    width: 75%;
+    margin-top: 8px;
+}
+
+.col-50{
+    float: left;
+    width: 50%;
+    margin-top: 8px;
+}
+
+.col-100{
+    float: left;
+    width: 100%;
+    margin:auto;
+    margin-top: 8px;
+}
+
+
+input[type="text"]{
+    width: 100%;
+    margin: 8px;
+    padding: 12px 20px;
+    padding-right: 0px;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #31312E;
+    resize: vertical;
+}
+
+input[type="tel"]{
+    width: 100%;
+    margin: 8px;
+    padding: 12px 20px;
+    padding-right: 0px;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #31312E;
+    resize: vertical;
+}
+
+#date{
+    text-align: center;
+    font-size: 16px;
+}
+
+#date2{
+    width: 100%;
+    margin: 8px;
+    padding: 12px 20px;
+    padding-right: 0px;
+    display: inline-block;
+    text-align: left;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #31312E;
+    resize: vertical;
+}
+#price{
+    text-align: center;
+    font-size: 16px;
+    margin-left: 0px;
+    
+}
+
+#submit{
+    margin-top: 20px;
+}
+
+.headAmodal{
+    display: inline-block;
+    width: 50%;
+    font-size: 40px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 600;
+    text-align: left;
+    padding: 0;
+}
+
+.headBmodal{
+    display: inline-block;
+    width: 50%;
+    margin-right: -0.4%;
+    font-size: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    text-align: right;
+}
+
+.roomModal{  
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    /* border: 1px solid #31312E; */
+    color: #31312E;
+    margin: auto;
+    margin-top: 80px;
+    width: 100%;
+}
+
+.text{
+    color: #31312E;
+    width: 100%;
+    margin: 8px;
+    padding: 12px 20px;
+    padding-right: 0px;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 0.5px solid #31312E; 
+    resize: vertical;
+    font-size: medium ;
+}
+
+.navbar{
+    width: 100%;
+    color: whitesmoke;
+    height: 50px;
+    background-color: #31312E;
+    
+}
+
+.buttons{
+    height: 35px;
+    float: right;
+    margin: 7.5px;
+    margin-right: 20px;
+}
+
+.button-is-light{
+    color: whitesmoke;
+    height: 100%;
+    border: 1px solid #31312E;
+    background-color: #31312E;
+    font-size: 16px;
+}
+
+button[type="button"]:hover{
+    border: 1px solid whitesmoke;
+    border-radius: 4px ;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#navName{
+    height: 35px;
+    float: left;
+    margin: 7.5px;
+    margin-left: 20px;
+    border: none;
+}
+
+#navName:hover{
+    color: #F7DAA2;
+    height: 35px;
+    float: left;
+    margin: 7.5px;
+    margin-left: 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+input[type=checkbox]{
+    width: 20px;
+    height: 20px;
+    margin-top: 20px;
+}
+
+.checkbox{
+    margin-top: -50px;
+    width:30px;
+    height: 30px;
+    margin-bottom: 30px;
+    
+}
+
+.confirmSigninLabel{
+    width: 90%;
+    height: auto;
+    margin-top: 20px;
+    margin-left: 40px;
+    display: inline-block;
+}
+
+.arrow{
+    border: none;
+    background-color: transparent;
+}
+
+.arrow:hover{
+    background-color: transparent;
+}
+
+.status{
+    color: green;
+}
+
+.status2{
+    color: salmon;
+}
+
+
+#booking{
+    background-color: rgb(17, 146, 17);
+}
+
+#booking:hover{
+    background-color: rgb(0, 119, 0);
+}
+
+.close{
+    background-color: rgb(248, 78, 78);
+    width: 100%;
+    margin: 8px;
+    padding: 12px 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    color: whitesmoke;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+#close{
+    margin-right: 10px;
+    float: right;
+}
+
+.close:hover{
+    background-color: rgb(226, 51, 51);
+}
+
+.cancelBooked{
+    background-color: rgb(241, 126, 126);
+    width: 100%;
+    padding: 12px 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    color: whitesmoke;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.cancelButton{
+    margin: auto;
+    margin-top: 20px;
+    width: 100%;
+    color:whitesmoke;
+    text-align: center;
+    font-size: medium;
+}
+
+.cancelBooked:hover{
+    background-color: rgb(219, 87, 87);
+}
+
+.profile{  
+    width: 70%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    /* border: 1px solid #31312E; */
+    color: #31312E;
+    margin: auto;
+    margin-top: 80px;
+    
+}
+
+#edit{
+    float: right;
+}
+
+.edit{
+    background-color: #31312E;
+    width: 100%;
+    margin: 8px;
+    padding: 12px 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    color: whitesmoke;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.profileModal{  
+    width: 90%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    /* border: 1px solid #31312E; */
+    color: #31312E;
+    margin: auto;
+    margin-top: 80px;
+    
+}
+
+.editProfile{
+    height: 30%;
+    margin: auto;
+    margin-top: 10%;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    width: 60%;
+    font-size: 80px;
+}
+
+.reset{
+    background-color: #31312E;
+    width: 100%;
+    padding: 12px 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    color: whitesmoke;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.reset:hover{
+    background-color: #31312E;
+}
+
+#reset{
+    
+    margin-top: 20px;
+}
+
+#closeEdit{
+    margin-top: 28px;
+    float: right;
+}
+
+#closeEdbtn{
+    background-color: transparent;
+    color: #31312E;
+    border-radius: 4px;
+    border: 1px solid #31312E;
+}
+
+#newPass{
+    margin-left: -24.9%;
+}
+#newPassfill{
+    margin-left: -0.2%;
+}
+
+.footer {
+    float: inline-end;
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: antiquewhite;
+    color: #31312E;
+    text-align: center;
+    height: 30px;
+}
+
+.footerBtn{
+    margin: auto;
+    border: 0;
+    background-color: transparent;
+}
+
+.footerBtn:hover{
+    border-bottom:1px solid #31312E;
+}
+
+#homeFoot{
+    position: fixed;
+}
+
+#titleSign{
+    margin-top: 80px;
+}
+
+#col-100{
+    width: 100%;
+   
+}
+
+.col-100Foot{
+    width: 100%;
+    margin-top: 100px;
+}
+
+.col-100proFoot{
+    width: 100%;
+    margin-top: 500px;
+}
+
+.col-100findFoot{
+    width: 100%;
+    margin-top: 30px;
+}

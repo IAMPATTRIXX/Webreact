@@ -1,0 +1,19 @@
+[
+    {
+        "fname" : "",
+        "lname" : "",
+        "email" : "",
+        "pass"  : "",
+        "phone" : "",
+        "personalID" :  ""
+    },
+    {
+        "fname" : "sun",
+        "lname" : "idot",
+        "email" : "sun_idot@gmail.com",
+        "pass"  : "852456",
+        "phone" : "0934685210",
+        "personalID" :  "1509935046822"
+    }
+
+]
