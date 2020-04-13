@@ -21,7 +21,7 @@ export default class Findpage extends React.Component {
 
     handlefind = event => {
         event.preventDefault();
-        axios.get('http://localhost:3000/hotelbook/room').then(res => {
+        axios.get('https://cpelab-booking.herokuapp.com/hotelbook/room').then(res => {
             console.log(res);
             this.setState({rooms : res.data})
         })

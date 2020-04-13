@@ -13,6 +13,7 @@ export default class Signin extends React.Component {
        surname : '',
        email :'',
        password:'',
+       passwordP:'',
     }
 
     onChange = (e) => {
@@ -20,24 +21,58 @@ export default class Signin extends React.Component {
         this.setState({[name]: value})
     }
 
+    checkValidate(){
+        const { name,surname,email,password,passwordP } = this.state
+        const user = {
+            "name":name,
+            "surname":surname,
+            "email":email,
+            "password":password,
+            "passwordP":passwordP,
+            }
+        const strPass = user.password
+        console.log(strPass)
+            if(user.name ==''){
+                alert('name blank')
+                return false;
+            }
+            else if(user.surname==''){
+                alert('surname blank')
+                return false;
+            }else if(user.email==''){
+                alert('email blank')
+                return false;
+            }else if(user.password==''){
+                alert('password blank')
+                return false;
+            }
+            else if(user.password != user.passwordP){
+                alert('Your confirm password is not correct!')
+                return false;
+            }
+            return true;
+    
+        }
+    
     handlesubmit = event => {
         event.preventDefault();
-
-        const user ={
+        if(this.checkValidate()){
+            const user ={
             name : this.state.name,
             surname : this.state.surname,
             email : this.state.email,
             password : this.state.password,
 
         }
-        axios.post('https://cpelab-booking.herokuapp.com/hotelbook/users' , user)
-        .then(res => {
+            axios.post('https://cpelab-booking.herokuapp.com/hotelbook/users' , user)
+            .then(res => {
             console.log(res);
             console.log(res.data);
             
         })
+        }
+        // console.log(this.checkValidate())
     }
-    
     render(){
         return(
             
@@ -76,7 +111,7 @@ export default class Signin extends React.Component {
                              <label className="forms"> Confirm password:</label>
                          </div>
                          <div className="col-75">
-                            <input type="password" />
+                            <input type="password" value={this.state.passwordP} onChange={this.onChange}  name="passwordP"/>
                          </div>
                          <div className="confirmSigninLabel">
                              <label for="confirmSignin" > My information is correct.</label>     
