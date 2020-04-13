@@ -7,6 +7,10 @@ import ModalTest from './Modal'
 
 
 export default class Findpage extends React.Component {
+    
+    
+    
+    
     state = {
         rooms : [],
     }
@@ -17,7 +21,7 @@ export default class Findpage extends React.Component {
 
     handlefind = event => {
         event.preventDefault();
-        axios.get('http://localhost:4000/hotelbook/room').then(res => {
+        axios.get('http://localhost:3000/hotelbook/room').then(res => {
             console.log(res);
             this.setState({rooms : res.data})
         })
@@ -65,33 +69,31 @@ export default class Findpage extends React.Component {
                      
                      {this.state.rooms.map(room => 
                      
-                      <tr className = "row">
-                      <td className = "typeroom">
+                        <tr className = "row">
+                        <td className = "typeroom">
                           {room.type}
-                      </td>
-                      <td className ="number">
+                        </td>
+                        <td className ="number">
                           {room.room}
-                      </td>
-                      <td className = "iconPerson">
+                        </td>
+                        <td className = "iconPerson">
                           <Person fontSize="27px" color="#31312E"/>
-                      </td >
-                      <td className = "amount">
+                        </td >
+                        <td className = "amount">
                           {room.amount}
-                      </td>
-                      <td className = "iconCash">
+                        </td>
+                        <td className = "iconCash">
                           <Cash fontSize="30px" color="#31312E"/>
-                      </td>
-                      <td className = "course">
+                        </td>
+                        <td className = "course">
                           {room.prize}
-                      </td>
-                      <td className = "iconCheckmark">
-                          {/* <Checkmark fontSize="30px" color="green"/> */}
-                          <Checkmark fontSize="30px" color="salmon"/>
-                      </td>
-                                <td>
-                          {/* <p className = "status"> booked </p> */}
-                                <p className = "status2"> unreserved </p>
-                                </td>
+                        </td>
+                        <td className = "iconCheckmark">
+                            {room.status == true? <Checkmark fontSize="30px" color="green"/>:<Checkmark fontSize="30px" color="salmon"/>} 
+                        </td>
+                        <td>
+                            {room.status == true? 'booked':'unreserved'}   
+                        </td>
       
                                  <td className = "iconArrow">
                                     <ModalTest/>

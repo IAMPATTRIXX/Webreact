@@ -31,7 +31,7 @@ export default class Signin extends React.Component {
             password : this.state.password,
 
         }
-        axios.post('http://localhost:4000/hotelbook/users' , {user})
+        axios.post('http://localhost:3000/hotelbook/users' , user)
         .then(res => {
             console.log(res);
             console.log(res.data);
@@ -88,8 +88,8 @@ export default class Signin extends React.Component {
                          <div className="col-100">
                          <input type="submit" id="submit" value="SIGN IN"/> {/* login */}
                          
-                         {/* <Link to="/Home"><input type="submit" id="submit" value="Home"/> login */}
-                         {/* </Link> */}
+                         <Link to="/Home"><input type="submit" id="submit" value="Home"/> login
+                         </Link>
                          </div>
                       </form>  
                  </div>
