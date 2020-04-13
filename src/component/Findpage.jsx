@@ -7,13 +7,23 @@ import ModalTest from './Modal'
 
 
 export default class Findpage extends React.Component {
-    
-    
-    
-    
-    state = {
+    constructor(props){
+        super(props)
+        this.state = {
         rooms : [],
+        users : [{
+            name : '',
+            surname : '',
+            number : '',
+            id : '',
+            email : '',
+            amountin : '',
+            checkin : '',
+            checkout : '',
+            iD:''
+        }]
     }
+}
 
     onChange2 = (e) => {
         this.setState( { [e.target.rooms]: e.target.value } );

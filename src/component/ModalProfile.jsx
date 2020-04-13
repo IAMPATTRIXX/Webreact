@@ -17,16 +17,23 @@ const customStyles = {
     }
   };
    
-  // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
+  // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)'
+  
+ 
+
   Modal.setAppElement(document.getElementById('root'))
    
-  function ModalProfile(props){
-    var subtitle;
-    const [modalIsOpen,setIsOpen] = React.useState(false);
-    function openModal(e) {
-      e.preventDefault();  
-      setIsOpen(true);
-    }
+    function ModalProfile(props){
+        function visible(value=false){
+            return value;
+        }
+
+        var subtitle;
+        const [modalIsOpen,setIsOpen] = React.useState(false);
+        function openModal(e) {
+        e.preventDefault();  
+        setIsOpen(true);
+        }
    
     function afterOpenModal() {
       // references are now sync'd and can be accessed.
@@ -37,7 +44,7 @@ const customStyles = {
       setIsOpen(false);
     }
    
-      return (
+    return (
         <div>
           {/* <input type="submit" value="submit" onClick={openModal}/> */}
             <button className="edit" onClick={openModal} >EDIT</button>
@@ -91,22 +98,30 @@ const customStyles = {
                             <label className="forms"> Password: </label>
                         </div>
                         <div className="col-75" id="reset">
-                            <button className="reset">
+                            <button className="reset" 
+                                    onClick={() => {
+                                        document.getElementById('visible').style.visibility = 'visible'
+                                        console.log('i am here')} 
+                                    }>
                                 reset password
                             </button>
                         </div>
-                        <div className="col-25" id="newPass">
-                            <label className="forms"> New Password: </label>
-                        </div>
-                        <div className="col-75" id="newPassfill">
-                            <input type="password" />
-                        </div>  
-                        <div className="col-25">
-                            <label className="forms"> Confirm password:</label>
-                        </div>
-                        <div className="col-75">
-                            <input type="password" />
-                        </div> 
+                            <div id = "visible">
+                                <div className="col-25" id="newPass">
+                                    <label className="forms"> New Password: </label>
+                                </div>
+                                <div className="col-75" id="newPassfill">
+                                    <input type="password" />
+                                </div>
+                                <div className="col-25">
+                                    <label className="forms"> Confirm password:</label>
+                                </div>
+                                <div className="col-75">
+                                    <input type="password" />
+                                </div> 
+                            </div>
+                          
+                        
                         <div className="confirmSigninLabel">
                             <label for="confirmSignin" > My information is correct.</label>     
                         </div>
