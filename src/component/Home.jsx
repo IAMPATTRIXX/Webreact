@@ -84,7 +84,7 @@ export default class Home extends React.Component{
                 {/* <NavbarLogin/> ------------------------------------------------------------------- Navbar after login page wth findpage */}
                 <div className = "center">{/* ---------------------------------------------------------------- Login page */} 
                     <div className = "nameHotel">
-                        . h o t e l l 
+                        . h o t e l 
                     </div> 
                     <form  className="form" onSubmit={this.onSubmit} > 
                         <label className="label"> Email : </label>   
@@ -92,7 +92,7 @@ export default class Home extends React.Component{
                         <label className="label"> password : </label>
                         <input type="password" name ="password" onChange={this.onChange} />
                         <input type="submit" value="LOGIN"/>
-                        <Link to="/Findpage"><input type="submit" value="LOGIN G"/></Link> 
+                        
                         {/* loginปุ่มfind page 112 */}
                         {/* <Route exact path="/Findpage" Component={Findpage} /> */}
                      </form>  

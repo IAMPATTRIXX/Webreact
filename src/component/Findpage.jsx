@@ -4,6 +4,7 @@ import Person from 'react-ionicons/lib/MdPerson'
 import Cash from 'react-ionicons/lib/MdCash'
 import Checkmark from 'react-ionicons/lib/IosCheckmarkCircle'
 import ModalTest from './Modal'
+import Home from './Home'
 
 
 export default class Findpage extends React.Component {
@@ -11,7 +12,7 @@ export default class Findpage extends React.Component {
         super(props)
         this.state = {
         rooms : [],
-        users : [{
+        user:[{
             name : '',
             surname : '',
             number : '',
@@ -20,12 +21,13 @@ export default class Findpage extends React.Component {
             amountin : '',
             checkin : '',
             checkout : '',
-            iD:''
-        }]
+            logout:false,
+            }]
         }
+        
     }
 
-    componentDidMount(){ // start webpage
+        componentDidMount(){ // start webpage
         const exist = localStorage.getItem('token')
         if(exist!=null){
             const url = 'https://cpelab-booking.herokuapp.com/hotelbook/users/me'
@@ -33,45 +35,75 @@ export default class Findpage extends React.Component {
                 headers: {
                   'Authorization': `Bearer ${exist}`
                 }
-              })
-              .then(res => {
-                localStorage.setItem('Status','Fucking Fina Time')
+                })
+                .then(res => {
                 this.setState({ 
-                    name: res.data.name,
-                    surname: res.data.surname,
-                    number:  res.data.number,
-                    id:  res.data.id,
-                    email:  res.data.email,
-                    amountin: res.data.amount.amountin,
-                    checkin:res.data.amount.checkin,
-                    checkout:res.data.amount.checkout
-              })
-            })
+                    //เค้าดึงค่าจากใน mongo มาใส่นี้ไว้หมดแล้ว(มั้ง??)
+                    name: res.data.user.name,
+                    surname: res.data.user.surname,
+                    number:  res.data.user.number,
+                    id:  res.data.user.id,
+                    email:  res.data.user.email,
+                    amountin: res.data.user.amountin,
+                    checkin:res.data.user.checkin,
+                    checkout:res.data.user.checkout
+                })
+                localStorage.setItem('Status','Fucking Fina Time')
+                console.log(res)
+                })
+            }
         }
-      }
 
-    onChange2 = (e) => {
-        this.setState( { [e.target.rooms]: e.target.value } );
+    
+    
+        onChange = (e) => {
+            const { name, value } = e.target
+            this.setState({
+            [name]: value
+        })
         }
 
-    handlefind = event => {
-        event.preventDefault();
-        axios.get('https://cpelab-booking.herokuapp.com/hotelbook/room').then(res => {
+        handlefind = event => {
+            event.preventDefault();
+            axios.get('https://cpelab-booking.herokuapp.com/hotelbook/room').then(res => {
             console.log(res);
             this.setState({rooms : res.data})
-        })
-    }
+            })
+        }
     
-   
+        logout = (e) => {
+            e.preventDefault();
+            const exist = localStorage.getItem('token')
+            const url = 'https://cpelab-booking.herokuapp.com/hotelbook/users/logout'
+            const head = {
+            headers: {
+                'Authorization': `Bearer ${exist}`
+              }
+            };
+            axios.get(url,head)
+            .then(res => {
+                localStorage.clear();
+                this.setState({user:null,logout:true})
+                alert('Logout Success')
+        })
+        }
     
     
     
     
     render(){
-        return(
+        if(this.state.logout){
+            return <Home/>
+        }
+        
+          return(
             <div className = "center" >
                     <div className = "nameHotel"> {/* --------------------------------------------------------- find page */}
                         . h o t e l  
+                    </div>
+                    <div className = "nameuser"> {/* --------------------------------------------------------- find page */}
+                        {/* เค้าลองเช็ตดู ถ้าดึงมาได้ จะขึ้นเป็น "Welcome + ชื่อของ User นั้นๆ"*/}
+                        Welcome {this.state.name} 
                     </div>
                 <div>
                     <form action="" className="form" onSubmit={this.handlefind}> 
@@ -89,8 +121,15 @@ export default class Findpage extends React.Component {
                         <input type="date" name="checkout" />
                         <label className ="label"> Amount : </label>   
                         <input type="number" name="amount" placeholder="0"/>
-                        <input type="submit" value="FIND" onChange={this.handlefind}/>    
+                        <input type="submit" value="FIND" onChange={this.onChange}/>    
+                         
                     </form>
+                    <div className="center">
+                        <form action="" onSubmit={this.logout}>
+                            <input type="submit" value="LOG OUT" onChange={this.onChange}/>
+                    </form>
+                    </div>
+                    
                 </div>
                 
                 <div className = "result-list">
@@ -100,7 +139,7 @@ export default class Findpage extends React.Component {
                     </th>
                 </table>
                 <table className ="list">
-                <tr className = "row">
+                    <tr className = "row">
                      
                      {this.state.rooms.map(room => 
                      
@@ -129,11 +168,12 @@ export default class Findpage extends React.Component {
                         <td>
                             {room.status == true? 'booked':'unreserved'}   
                         </td>
-      
-                                 <td className = "iconArrow">
+                        <td className = "iconArrow">
                                     <ModalTest/>
-                                </td>
-                            </tr>)}
+                        </td>
+                        </tr>
+                        )}
+                        
                         </tr>
                     </table>
                 </div>
