@@ -642,3 +642,21 @@ input[type=checkbox]{
     width: 100%;
     margin-top: 30px;
 }
+
+.visible {
+    visibility: visible;
+    background-color: #31312E;
+    width: 100%;
+    margin: 8px;
+    padding: 12px 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    color: whitesmoke;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+#visible{
+    visibility: hidden;
+}

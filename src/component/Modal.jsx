@@ -98,12 +98,12 @@ const customStyles = {
                     <div className="col-75" id="price">
                         <label className="forms" id="date2"> 3000 bath</label>
                     </div>
-                    <form>
+                    <form onSubmit={this.handleSubmit}>
                         <div className="confirmSigninLabel">
                             <label for="confirmSignin" > My information is correct.</label>     
                         </div>
                         <div className="checkbox" >
-                            <input type="checkbox" className="confirmSignin" name="confirmSignin"/> 
+                            <input type="checkbox" className="confirmSignin" name="confirmSignin" id = "checkBox"/> 
                         </div>
                         <div className="col-25">
                             <input type="submit" value="BOOKING" id="booking"/>

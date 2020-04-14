@@ -20,6 +20,56 @@ export default class Signin extends React.Component {
         this.setState({[name]: value})
     }
 
+    checkValidate(){
+        const fname = document.querySelector('#fname')
+        const lname = document.querySelector('#lname')
+        const email = document.querySelector('#emailS')
+        const password = document.querySelector('#passwordS')
+        const confirmP = document.querySelector('#confirmPass')
+        const check = document.querySelector('#checkBoxSign')
+        const strPass = password.value
+        console.log(check.checked)
+        console.log(strPass)
+            if(this.state.name==''){
+                fname.focus();
+                return false;
+            }
+            else if(this.state.surname==''){
+                lname.focus();
+                return false;
+            }else if(this.state.email==''){
+                email.focus();
+                return false;
+            }else if(this.state.password==''){
+                password.focus();
+                return false;
+            }else if(confirmP.value==''){
+                confirmP.focus();
+                return false;
+            }else if((this.state.password).localeCompare(confirmP.value)!=0){
+                alert('Your confirm password is not correct!')
+                confirmP.focus();
+                return false;
+            }else if(!check.checked){
+                console.log('Please check a box')
+                check.focus();
+                return false;
+            }
+            return true;
+    
+        }
+
+    
+
+    visible(value=true){
+        console.log(value);
+        if(value==true){
+            return value=true;
+        }
+        return value;
+    }
+
+
     handlesubmit = event => {
         event.preventDefault();
 
@@ -30,13 +80,19 @@ export default class Signin extends React.Component {
             password : this.state.password,
 
         }
-        axios.post('https://cpelab-booking.herokuapp.com/hotelbook/users' , user)
+        axios.post('https://cpelab-booking.herokuapp.com/hotelbook/users' , )
         .then(res => {
             console.log(res);
             console.log(res.data);
             
         })
+
+        alert('Createing new account was complete. Please back to page Login.')
+        
+
     }
+
+    
     
     render(){
         return(
@@ -47,50 +103,64 @@ export default class Signin extends React.Component {
                  <div className = "nameHotel" id="titleSign">
                      . s i g n &nbsp; i n
                  </div> 
-                      <form action="" className="form" onSubmit={this.handlesubmit}> 
+                      <form action="" className="form" onSubmit={this.handlesubmit} > 
                          <div className="col-25">  
                           <label className="forms">Name: </label>
                        </div>
                          <div className="col-75">
-                           <input type="text" name="name" value={this.state.name} onChange={this.onChange} placeholder="Jacob"/>
+                           <input type="text" name="name" value={this.state.name} onChange={this.onChange} placeholder="Jacob" id="fname"/>
                          </div>
                          <div className="col-25">
                              <label className="forms">Surname: </label>
                          </div>
                          <div className="col-75">
-                             <input type="text" name="surname" value={this.state.surname} onChange={this.onChange}  placeholder="Wilton"/>
+                             <input type="text" name="surname" value={this.state.surname} onChange={this.onChange}  placeholder="Wilton" id="lname"/>
                          </div>
                          <div className="col-25">
                              <label className="forms"> Email: </label>
                          </div>
                          <div className="col-75">
-                             <input type="email" name="email" value={this.state.email} onChange={this.onChange}  placeholder="Jacob@example.com"/>
+                             <input type="email" name="email" value={this.state.email} onChange={this.onChange}  placeholder="Jacob@example.com" id="emailS"/>
                          </div>
                          <div className="col-25">
                              <label className="forms"> Password: </label>
                          </div>
                          <div className="col-75">
-                             <input type="password" value={this.state.password} onChange={this.onChange}  name="password"/>
+                             <input type="password" value={this.state.password} onChange={this.onChange}  name="password" id="passwordS"/>
                          </div>  
-                         <div className="col-25">
+                         <div className="col-25"> 
                              <label className="forms"> Confirm password:</label>
                          </div>
                          <div className="col-75">
-                            <input type="password" />
+                            <input type="password" id="confirmPass" />
                          </div>
                          <div className="confirmSigninLabel">
                              <label for="confirmSignin" > My information is correct.</label>     
                          </div>
                          <div className="checkbox" >
-                             <input type="checkbox" className="confirmSignin" name="confirmSignin"/> 
+                             <input type="checkbox" className="confirmSignin" name="confirmSignin" id= "checkBoxSign"/> 
                          </div>
                          <div className="col-100">
-                         <input type="submit" id="submit" value="SIGN IN"/> 
+                         <input type="submit" id="submit" value="SIGN IN" /> 
                          
-                         <Link to="/Home"><input type="submit" id="submit" value="Home"/> login
-                         </Link>
+                         
                          </div>
                       </form>  
+                      {
+                         
+                            this.state.name!=''&&this.state.email!=''&&this.state.password!=''&&this.state.surname!='' ?
+                            
+                            <div>
+                                <Link to="/Home"> 
+                                    <button type="submit" id="submit" value="Go To Login" className="visible">
+                                        Go To Login
+                                    </button>
+                                </Link>
+                            </div>
+
+                            :null 
+                            
+                         }
                  </div>
                  <div className="col-100Foot" >
                      <div className="footer" id="homeFoot"> {/* ------------------------------------------------------------------------- footer send to about us page */}

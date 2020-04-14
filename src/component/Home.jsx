@@ -53,7 +53,7 @@ export default class Login extends React.Component{
             "email":email,
             "password":password
           };
-        const url = 'http://localhost:3000/hotelbook/users/login'
+        const url = 'https://cpelab-booking.herokuapp.com/hotelbook/users/login'
         axios.post(url,user) .then(res => {
             if(res.status==200){
               localStorage.setItem('token',res.data.token)
@@ -121,6 +121,7 @@ export default class Login extends React.Component{
             
         ) 
     } 
+
 
 }
 
