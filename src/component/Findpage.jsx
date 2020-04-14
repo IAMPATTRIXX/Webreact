@@ -22,8 +22,24 @@ export default class Findpage extends React.Component {
             checkout : '',
             iD:''
         }]
+        }
     }
-}
+
+    // componentDidMount(){ // start webpage
+    //     const exist = localStorage.getItem('token')
+    //     if(exist!=null){
+    //         const url = 'https://cpelab-booking.herokuapp.com/hotelbook/users/me'
+    //         axios.get(url,{
+    //             headers: {
+    //               'Authorization': `Bearer ${exist}`
+    //             }
+    //           })
+    //           .then(res => {
+    //             this.setState({ name: res.data.name,
+    //           })
+    //         })
+    //     }
+    //   }
 
     onChange2 = (e) => {
         this.setState( { [e.target.rooms]: e.target.value } );
@@ -37,7 +53,7 @@ export default class Findpage extends React.Component {
         })
     }
     
-    
+   
     
     
     
