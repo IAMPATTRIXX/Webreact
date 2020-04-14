@@ -1,10 +1,10 @@
-
 import React,{Component} from 'react'
 import { Link } from 'react-router-dom';
 import '../bookStyle.css'
 import axios from 'axios'
 // import {BrowserRouter as Router, Route} from 'react-router-dom'
 import NavbarSign from './NavbarSign'
+import Home from './Home';
 
 
 export default class Signin extends React.Component {
@@ -13,6 +13,7 @@ export default class Signin extends React.Component {
        surname : '',
        email :'',
        password:'',
+       status:false
     }
 
     onChange = (e) => {
@@ -35,12 +36,18 @@ export default class Signin extends React.Component {
             console.log(res);
             console.log(res.data);
             
+            this.setState({status:true})
+            
         })
     }
     
     render(){
+        if(this.state.status){
+            return (
+              <Home/>
+          ) 
+          }
         return(
-            
             <div id="col-100">
              <NavbarSign />
              <div className = "center"> {/* ---------------------------------------------------------------- Sign in page  */}

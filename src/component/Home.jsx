@@ -23,20 +23,6 @@ export default class Home extends React.Component{
     
     }
 
-    // async componentDidMount(){ // start webpage
-    //     const exist = localStorage.getItem('token')
-    //     if(exist!=null){
-    //         const url = 'https://cpelab-booking.herokuapp.com/hotelbook/users/me'
-    //         await axios.get(url,{
-    //             headers: {
-    //               'Authorization': `Bearer ${exist}`
-    //             }
-    //           })
-    //           .then(async res => {
-    //             this.setState({currentUser:res.data.user})
-    //         })
-    //     }
-    // }
 
     onChange = e => {
         const { name, value } = e.target
@@ -57,6 +43,7 @@ export default class Home extends React.Component{
         .then(res => {
             if(res.status==201){
                 localStorage.setItem('token',res.data.token)
+                // localStorage.setItem('ID',res.data._id)
                 this.setState({loginstatus:true})
                 alert('Login Success')
             }else{

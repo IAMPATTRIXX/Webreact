@@ -25,21 +25,30 @@ export default class Findpage extends React.Component {
         }
     }
 
-    // componentDidMount(){ // start webpage
-    //     const exist = localStorage.getItem('token')
-    //     if(exist!=null){
-    //         const url = 'https://cpelab-booking.herokuapp.com/hotelbook/users/me'
-    //         axios.get(url,{
-    //             headers: {
-    //               'Authorization': `Bearer ${exist}`
-    //             }
-    //           })
-    //           .then(res => {
-    //             this.setState({ name: res.data.name,
-    //           })
-    //         })
-    //     }
-    //   }
+    componentDidMount(){ // start webpage
+        const exist = localStorage.getItem('token')
+        if(exist!=null){
+            const url = 'https://cpelab-booking.herokuapp.com/hotelbook/users/me'
+            axios.get(url,{
+                headers: {
+                  'Authorization': `Bearer ${exist}`
+                }
+              })
+              .then(res => {
+                localStorage.setItem('Status','Fucking Fina Time')
+                this.setState({ 
+                    name: res.data.name,
+                    surname: res.data.surname,
+                    number:  res.data.number,
+                    id:  res.data.id,
+                    email:  res.data.email,
+                    amountin: res.data.amount.amountin,
+                    checkin:res.data.amount.checkin,
+                    checkout:res.data.amount.checkout
+              })
+            })
+        }
+      }
 
     onChange2 = (e) => {
         this.setState( { [e.target.rooms]: e.target.value } );
