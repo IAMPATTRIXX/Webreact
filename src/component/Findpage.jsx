@@ -9,6 +9,7 @@ import NavbarLogin from './NavbarLogin'
 
 
 
+
 export default class Findpage extends React.Component {
 
     // state = {
@@ -163,11 +164,13 @@ export default class Findpage extends React.Component {
                         id: this.state.users[i].id,
                         amount: this.state.user.amount.concat([this.state.users[i].amount]),
                     }
+
                 })
             }
         }
         console.log(this.state.user)
     }
+
 
     componentDidMount(){
         axios.get('https://cpelab-booking.herokuapp.com/hotelbook/room')
@@ -422,6 +425,7 @@ export default class Findpage extends React.Component {
                         <th>  
                             Result List
                         </th>
+
                     </table>
                     <table className ="list">
                     <tr className = "row">

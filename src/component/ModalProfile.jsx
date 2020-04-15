@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import React from 'react'
 import '../bookStyle.css'
 import Arrow from 'react-ionicons/lib/IosArrowDropright'
+import Findpgae from './Findpage'
 
 const customStyles = {
     content : {

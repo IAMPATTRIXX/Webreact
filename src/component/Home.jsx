@@ -23,20 +23,6 @@ export default class Home extends React.Component{
     
     }
 
-    // async componentDidMount(){ // start webpage
-    //     const exist = localStorage.getItem('token')
-    //     if(exist!=null){
-    //         const url = 'https://cpelab-booking.herokuapp.com/hotelbook/users/me'
-    //         await axios.get(url,{
-    //             headers: {
-    //               'Authorization': `Bearer ${exist}`
-    //             }
-    //           })
-    //           .then(async res => {
-    //             this.setState({currentUser:res.data.user})
-    //         })
-    //     }
-    // }
 
     onChange = e => {
         const { name, value } = e.target
@@ -59,6 +45,7 @@ export default class Home extends React.Component{
         .then(res => {
             if(res.status==201){
                 localStorage.setItem('token',res.data.token)
+                // localStorage.setItem('ID',res.data._id)
                 this.setState({loginstatus:true})
                 alert('Login Success')
 
@@ -108,6 +95,7 @@ export default class Home extends React.Component{
                         <label className="label"> password : </label>
                         <input type="password" name ="password" onChange={this.onChange} />
                         <input type="submit" value="LOGIN"/>
+
                         {/* loginปุ่มfind page 112 */}
                         {/* <Route exact path="/Findpage" Component={Findpage} /> */}
                      </form>  

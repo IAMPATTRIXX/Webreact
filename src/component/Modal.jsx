@@ -1,7 +1,7 @@
-import ReactDOM from 'react-dom';
-import Modal from 'react-modal';
-import React from 'react'
+import React,{Component} from 'react'
+import { Link } from 'react-router-dom';
 import '../bookStyle.css'
+
 import Arrow from 'react-ionicons/lib/IosArrowDropright'
 
 const customStyles = {
@@ -59,7 +59,7 @@ const customStyles = {
     }
    
       return (
-        <div >
+        <div>
           {/* <input type="submit" value="submit" onClick={openModal}/> */}
           <button className="arrow" onClick={openModal} id="arrow" >
                  <Arrow fontSize="30px" color="#31312E" />
@@ -72,7 +72,7 @@ const customStyles = {
             contentLabel="Example Modal"
             state={state}
             
-          >
+          />
             <div>
                 <div ref={_subtitle => (subtitle = _subtitle)} >
                     <div className="headAmodal">{props.room.room}</div>
@@ -136,13 +136,22 @@ const customStyles = {
                         <button onClick={closeModal} className="close">CLOSE</button>
                     </div>
                     
+
                 </div>
-                
-                
-            </div> 
-            </Modal>
+            </div>
+    
+
         </div>
-      );
-  }
-  
-export default ModalTest
+        )
+    }
+
+
+export default Modal
+
+
+
+
+
+
+
+
