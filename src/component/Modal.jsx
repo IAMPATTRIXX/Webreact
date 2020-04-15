@@ -98,7 +98,7 @@ const customStyles = {
                     <div className="col-75" id="price">
                         <label className="forms" id="date2"> 3000 bath</label>
                     </div>
-                    <form onSubmit={this.handleSubmit}>
+                    <form >
                         <div className="confirmSigninLabel">
                             <label for="confirmSignin" > My information is correct.</label>     
                         </div>

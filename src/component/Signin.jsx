@@ -5,6 +5,7 @@ import '../bookStyle.css'
 import axios from 'axios'
 // import {BrowserRouter as Router, Route} from 'react-router-dom'
 import NavbarSign from './NavbarSign'
+import Home from './Home'
 
 
 export default class Signin extends React.Component {
@@ -13,6 +14,7 @@ export default class Signin extends React.Component {
        surname : '',
        email :'',
        password:'',
+       status:false
     }
 
     onChange = (e) => {
@@ -80,21 +82,31 @@ export default class Signin extends React.Component {
             password : this.state.password,
 
         }
-        axios.post('https://cpelab-booking.herokuapp.com/hotelbook/users' , )
+        axios.post('https://cpelab-booking.herokuapp.com/hotelbook/users' , user)
         .then(res => {
             console.log(res);
             console.log(res.data);
+            this.setState({status:true})
+            localStorage.setItem('token',res.data.token)
+            alert('Signup Success')
             
         })
 
-        alert('Createing new account was complete. Please back to page Login.')
-        
+       // alert('Createing new account was complete. Please back to page Login.')
+        this.setState({
+            status: true,
+        })
 
     }
 
     
     
     render(){
+        if(this.state.status){
+            return (
+              <Home/>
+          )
+        } 
         return(
             
             <div id="col-100">
@@ -146,7 +158,7 @@ export default class Signin extends React.Component {
                          
                          </div>
                       </form>  
-                      {
+                      {/* {
                          
                             this.state.name!=''&&this.state.email!=''&&this.state.password!=''&&this.state.surname!='' ?
                             
@@ -160,7 +172,7 @@ export default class Signin extends React.Component {
 
                             :null 
                             
-                         }
+                         } */}
                  </div>
                  <div className="col-100Foot" >
                      <div className="footer" id="homeFoot"> {/* ------------------------------------------------------------------------- footer send to about us page */}

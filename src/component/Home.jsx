@@ -7,16 +7,18 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import axios from 'axios'
+import Findpage from './Findpage'
 
 
 
-export default class Login extends React.Component{
+export default class Home extends React.Component{
     constructor(props){
         super(props)
 
         this.state ={
             email: '',
             password:'',
+            loginstatus:false
         }
     
     }
@@ -24,7 +26,7 @@ export default class Login extends React.Component{
     // async componentDidMount(){ // start webpage
     //     const exist = localStorage.getItem('token')
     //     if(exist!=null){
-    //         const url = 'http://localhost:3000/hotelbook/users/login'
+    //         const url = 'https://cpelab-booking.herokuapp.com/hotelbook/users/me'
     //         await axios.get(url,{
     //             headers: {
     //               'Authorization': `Bearer ${exist}`
@@ -36,9 +38,6 @@ export default class Login extends React.Component{
     //     }
     // }
 
-
-
- 
     onChange = e => {
         const { name, value } = e.target
         this.setState({
@@ -54,12 +53,17 @@ export default class Login extends React.Component{
             "password":password
           };
         const url = 'https://cpelab-booking.herokuapp.com/hotelbook/users/login'
-        axios.post(url,user) .then(res => {
-            if(res.status==200){
-              localStorage.setItem('token',res.data.token)
-              this.componentDidMount()
+
+
+        axios.post(url,user) 
+        .then(res => {
+            if(res.status==201){
+                localStorage.setItem('token',res.data.token)
+                this.setState({loginstatus:true})
+                alert('Login Success')
+
             }else{
-              alert(res.data)
+              alert('login Failed')
             }
           }).catch(error=>{
             alert(error)
@@ -70,6 +74,11 @@ export default class Login extends React.Component{
     
       
     render(){
+        if(this.state.loginstatus){
+            return (
+              <Findpage email={this.state.email}/>
+          )
+        } 
         return(   
           <section className = "section container" > 
                 <div> {/* ----------------------------------------------------------------------------------- Navbar login page sign in */}
@@ -91,15 +100,14 @@ export default class Login extends React.Component{
                 {/* <NavbarLogin/> ------------------------------------------------------------------- Navbar after login page wth findpage */}
                 <div className = "center">{/* ---------------------------------------------------------------- Login page */} 
                     <div className = "nameHotel">
-                        . h o t e l l 
+                        . h o t e l 
                     </div> 
-                    <form  className="form" onSubmit={this.handlelogin} > 
+                    <form  className="form" onSubmit={this.onSubmit} > 
                         <label className="label"> Email : </label>   
                         <input type="email" name ="email" onChange={this.onChange} placeholder="Jacob@example.com" />
                         <label className="label"> password : </label>
                         <input type="password" name ="password" onChange={this.onChange} />
                         <input type="submit" value="LOGIN"/>
-                        <Link to="/Findpage"><input type="submit" value="LOGIN G"/></Link> 
                         {/* loginปุ่มfind page 112 */}
                         {/* <Route exact path="/Findpage" Component={Findpage} /> */}
                      </form>  

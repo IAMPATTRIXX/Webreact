@@ -23,18 +23,19 @@ const customStyles = {
 
   Modal.setAppElement(document.getElementById('root'))
    
-  function ModalProfile(props){
 
-    function visible(value=false){
-        return value;
-    }
+    function ModalProfile(props){
+        function visible(value=false){
+            return value;
+        }
 
-    var subtitle;
-    const [modalIsOpen,setIsOpen] = React.useState(false);
-    function openModal(e) {
-      e.preventDefault();  
-      setIsOpen(true);
-    }
+        var subtitle;
+        const [modalIsOpen,setIsOpen] = React.useState(false);
+        function openModal(e) {
+        e.preventDefault();  
+        setIsOpen(true);
+        }
+
    
     function afterOpenModal() {
       // references are now sync'd and can be accessed.
@@ -45,7 +46,7 @@ const customStyles = {
       setIsOpen(false);
     }
    
-      return (
+    return (
         <div>
           {/* <input type="submit" value="submit" onClick={openModal}/> */}
             <button className="edit" onClick={openModal} >EDIT</button>
