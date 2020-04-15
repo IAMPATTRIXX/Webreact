@@ -3,8 +3,9 @@ import axios from 'axios'
 import Person from 'react-ionicons/lib/MdPerson'
 import Cash from 'react-ionicons/lib/MdCash'
 import Checkmark from 'react-ionicons/lib/IosCheckmarkCircle'
-import ModalTest from './Modal'
+import Modal from './Modal'
 import Home from './Home'
+import { Link } from 'react-router-dom';
 
 
 export default class Findpage extends React.Component {
@@ -169,7 +170,10 @@ export default class Findpage extends React.Component {
                             {room.status == true? 'booked':'unreserved'}   
                         </td>
                         <td className = "iconArrow">
-                                    <ModalTest/>
+                            <Link to="/Modal"><button className="button-is-light" type="button" >
+                                            Book
+                                        </button>
+                            </Link>
                         </td>
                         </tr>
                         )}
