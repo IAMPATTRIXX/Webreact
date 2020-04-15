@@ -21,11 +21,31 @@ const customStyles = {
   Modal.setAppElement(document.getElementById('root'))
    
   function ModalTest(props){
+
+    let state = {
+        user:{
+            name: props.user.name,
+            surname: props.user.surname,
+            number: props.user.number,
+            id: props.user.id,
+            email: props.user.email,
+            amount:props.user.amount,
+        },
+        room:{
+            room: props.room.room,
+            ckeckin: props.room.checkin,
+            checkout: props.room.checkout,
+            status: props.room.status
+        }
+    }
+
     var subtitle;
     const [modalIsOpen,setIsOpen] = React.useState(false);
     function openModal(e) {
       e.preventDefault();  
       setIsOpen(true);
+      console.log(state.user)
+      console.log(props)
     }
    
     function afterOpenModal() {
@@ -35,6 +55,7 @@ const customStyles = {
    
     function closeModal(){
       setIsOpen(false);
+      
     }
    
       return (
@@ -49,10 +70,12 @@ const customStyles = {
             onRequestClose={closeModal}
             style={customStyles}
             contentLabel="Example Modal"
+            state={state}
+            
           >
             <div>
                 <div ref={_subtitle => (subtitle = _subtitle)} >
-                    <div className="headAmodal">S201</div>
+                    <div className="headAmodal">{props.room.room}</div>
                     <div className="headBmodal">. h o t e l</div>
                 </div>
                 <div className="roomModal">
@@ -60,43 +83,43 @@ const customStyles = {
                         <label className="forms">Name: </label>
                     </div>
                     <div className="col-75">
-                        <label className="text" id="">Jacob</label>
+                    <label className="text" id="">{state.user.name}</label>
                     </div>
                     <div className="col-25">
                         <label className="forms">Surname: </label>
                     </div>
                     <div className="col-75">
-                        <label className="text">Wilson</label>
+                        <label className="text">{state.user.surname}</label>
                     </div>
                     <div className="col-25">
                         <label className="forms"> Peraonal ID: </label>
                     </div>
                     <div className="col-75">
-                        <label className="text" >xxxx-xxx-xxx-xxx</label>
+                        <label className="text" >{state.user.id}</label>
                     </div>
                     <div className="col-25">
                         <label className="forms"> Phone number: </label>
                     </div>
                     <div className="col-75">
-                        <label className="text">08xxxxxx78</label>
+                        <label className="text">{state.user.number}</label>
                     </div>
                     <div className="col-25">
                         <label className="forms"> Check in: </label>
                     </div>
                     <div className="col-75" id="date">
-                        <label className="forms" id="date2"> 04/04/2020</label>
+                        <label className="forms" id="date2"> {props.room.checkin}</label>
                     </div>
                     <div className="col-25">
                         <label className="forms" > Check out: </label>
                     </div>
                     <div className="col-75" id="date">
-                        <label className="forms" id="date2"> 04/05/2020</label>
+                        <label className="forms" id="date2"> {props.room.checkout} </label>
                     </div>
                     <div className="col-25">
                         <label className="forms"> price:</label>
                     </div>
                     <div className="col-75" id="price">
-                        <label className="forms" id="date2"> 3000 bath</label>
+                        <label className="forms" id="date2"> {props.room.prize}</label>
                     </div>
                     <form >
                         <div className="confirmSigninLabel">
