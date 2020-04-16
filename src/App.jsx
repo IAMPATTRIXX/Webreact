@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Signin from './component/Signin'
 import About from './component/About'
 import Modal from './component/Modal';
+import Profile from './component/Profile';
 
 export default class App extends Component {
   state = {
@@ -33,18 +34,22 @@ export default class App extends Component {
             <Route path="/Findpage">
               <Findpage />
             </Route>
+            <Route path="/Profile">
+              <Profile />
+            </Route>
             <Route path="/Home">
               <Home/>
             </Route>
-            <Route path="/Modal">
+            {/* <Route path="/Modal">
               <Modal />
-            </Route>
+            </Route> */}
             <Route path="/Signin">
               <Signin />
             </Route>
             <Route path="/About">
               <About />
             </Route>
+            
          </Switch>
          </div>
       </Router>

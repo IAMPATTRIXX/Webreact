@@ -11,7 +11,7 @@ function NavbarLogin(props) {
    return (
         <nav className="navbar" role="navigation" aria-label="main navigation">
            <Link to="/Profile"> <button id = "navName" className="button-is-light" type = "button" onClick={props.fname}>
-                Sun
+                Profile
             </button>
             </Link>  
             <div id="navbarBasicExample" className="navbar-menu">

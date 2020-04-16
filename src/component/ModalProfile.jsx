@@ -23,9 +23,32 @@ const customStyles = {
  
 
   Modal.setAppElement(document.getElementById('root'))
-   
+
+  
+  
 
     function ModalProfile(props){
+
+    let state = {
+            name: props.user.name,
+            surname: props.user.surname,
+            number: props.user.number,
+            id: props.user.id,
+            email: props.user.email,
+            amountin : props.user.amountin,
+            checkin : props.user.checkin,
+            checkout : props.user.checkout,
+            ID:props.user.ID,
+            room:props.user.room,
+            logout:false,
+    }
+
+    //  fuction onChange (e) {
+    //     // let value = e.target.value;
+    //     // this.setState({title: value});
+    //     this.setState({ [e.target.name]:[e.target.value]})//same like 2 upper line
+    // }
+
         function visible(value=false){
             return value;
         }

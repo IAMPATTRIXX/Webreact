@@ -5,7 +5,9 @@ import Cash from 'react-ionicons/lib/MdCash'
 import Checkmark from 'react-ionicons/lib/IosCheckmarkCircle'
 import ModalTest from './Modal'
 import NavbarLogin from './NavbarLogin'
-
+import { FormErrors } from './FormErrors';
+import Profile from './Profile'
+import { Link } from 'react-router-dom';
 
 
 var amount = []
@@ -39,10 +41,39 @@ export default class Findpage extends React.Component {
                     typeRoom: ""
                 },
             listRoom : [],
-            
+            formErrors: {amountin: ''},
+            amountinlValid: false,
             
         }
     }
+    validateField(fieldName, value) {
+        let fieldValidationErrors = this.state.formErrors;
+      let amountinValid = this.state.amountinValid;
+  
+      switch(fieldName) {
+        
+        case 'amountin':
+          amountinValid = value.length >= 1;
+          fieldValidationErrors.amountin = amountinValid ? '': ' member not collect';
+          break;
+        default:
+        
+          break;
+      }
+      this.setState({formErrors: fieldValidationErrors,
+
+                      amountinValid: amountinValid
+                    }, this.validateForm);
+    }
+  
+    validateForm() {
+      this.setState({formValid:   this.state.amountinValid});
+    }
+  
+    errorClass(error) {
+      return(error.length === 0 ? '' : 'has-error');
+    }
+
 
     // onChange2 = (e) => {
     //     this.setState( { [e.target.rooms]: e.target.value } );
@@ -169,6 +200,12 @@ export default class Findpage extends React.Component {
             feild = true
         }
     
+        const { name, value } = e.target
+        this.setState({
+            [name]: value
+        },() => { this.validateField(name, value) });
+        
+
        
         
         this.userID()
@@ -404,13 +441,14 @@ export default class Findpage extends React.Component {
         console.log(this.state.user)
         console.log(this.state.listRoom)
         let strId = this.state.user._id
+
+        // name: this.state.user.name,
+        //     surname:this.state.user.surname,
+        //     number: this.state.user.number,
+        //     id: this.state.user.id,
+        //     email: this.state.user.email,
         
-        axios.put('https://cpelab-booking.herokuapp.com/hotelbook/users/edit/'+ strId,{
-            name: this.state.user.name,
-            surname:this.state.user.surname,
-            number: this.state.user.number,
-            id: this.state.user.id,
-            email: this.state.user.email,
+        axios.put('https://cpelab-booking.herokuapp.com/hotelbook/users/addRoom/'+ strId,{
             amount: {
                 amountin: Number(room.amountin),
                 checkin: String(room.checkin),
@@ -457,6 +495,7 @@ export default class Findpage extends React.Component {
                         </div>
                     <div>
                         <form action="" className="form" onSubmit={this.handlefind}> 
+                        <FormErrors formErrors={this.state.formErrors} />
                             <label className="label"> Type Room : </label>
                             <select className="typeRoom" id= "typeroom" >
                                 <option value="Superior" onChange={this.onChange} >Superior &nbsp;&nbsp; ( 2 people )</option>
@@ -469,9 +508,11 @@ export default class Findpage extends React.Component {
                             <input type="date"  name="checkin"   id= "checkin" min = {date} onChange={this.onChange} />
                             <label className="label"> Check out : </label>
                             <input type="date" name="checkout"  id= "checkout" min = {date} onChange={this.onChange} />
+                            <div className={`form-group ${this.errorClass(this.state.formErrors.amountin)}`}>
                             <label className ="label"> Amount : </label>   
-                            <input type="number" name="amountin"  id= "amount"  onChange={this.onChange} placeholder="0"/>
-                            <input type="submit" value="FIND" />    
+                            <input type="number" name="amountin"  id= "amount"  onChange={this.onChange} placeholder="0"className="form-control" value={this.state.amountin}/>
+                            </div>
+                            <input type="submit" value="FIND" disabled={!this.state.formValid}/>    
                         </form>
                     </div>
   
@@ -516,11 +557,16 @@ export default class Findpage extends React.Component {
                             </td>
         
                                     <td className = "iconArrow">
-                                        <ModalTest user={this.state.user}
+                                        {/* <ModalTest user={this.state.user}
                                                    room={room}
                                                    addBooking = {this.addBooking}
                                                    
-                                        />
+                                        /> */}
+                                        <Link to="/Profile"><button className="button-is-light" type="button" >
+                                            Book
+                                        </button>
+                            </Link>
+                                        
                                     </td>
                                 </tr>)}
                             </tr>
