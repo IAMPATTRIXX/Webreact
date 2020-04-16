@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import { Link } from 'react-router-dom';
 import '../bookStyle.css'
+import Modal from 'react-modal';
 
 import Arrow from 'react-ionicons/lib/IosArrowDropright'
 
@@ -33,8 +34,9 @@ const customStyles = {
         },
         room:{
             room: props.room.room,
-            ckeckin: props.room.checkin,
+            checkin: props.room.checkin,
             checkout: props.room.checkout,
+            amountin: props.room.amountin,
             status: props.room.status
         }
     }
@@ -57,6 +59,16 @@ const customStyles = {
       setIsOpen(false);
       
     }
+
+    function onSubmit(e){
+        e.preventDefault()
+        state.room.status = true
+        console.log(state.room)
+
+        props.addBooking(state.room)
+        state.room = {}
+        
+    }
    
       return (
         <div>
@@ -72,7 +84,7 @@ const customStyles = {
             contentLabel="Example Modal"
             state={state}
             
-          />
+          >
             <div>
                 <div ref={_subtitle => (subtitle = _subtitle)} >
                     <div className="headAmodal">{props.room.room}</div>
@@ -121,7 +133,7 @@ const customStyles = {
                     <div className="col-75" id="price">
                         <label className="forms" id="date2"> {props.room.prize}</label>
                     </div>
-                    <form >
+                    <form onSubmit={onSubmit}>
                         <div className="confirmSigninLabel">
                             <label for="confirmSignin" > My information is correct.</label>     
                         </div>
@@ -139,14 +151,14 @@ const customStyles = {
 
                 </div>
             </div>
-    
+            </Modal>
 
         </div>
         )
     }
 
 
-export default Modal
+export default ModalTest
 
 
 
