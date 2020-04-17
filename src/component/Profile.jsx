@@ -113,11 +113,8 @@ export default class Profile extends React.Component {
                     'Authorization': `Bearer ${exist}`
                   }
                 })
-                .then(res => {
-                  window.location.reload(false)
-                }).catch(error=>{
-                  alert(error)
-                })
+                .then
+                // (res => {window.location.reload(false)}).catch(error=>{alert(error)})
                 alert('Booking Success')
               }
           }

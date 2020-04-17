@@ -15,7 +15,7 @@ function NavbarProfile(props) {
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="buttons">
-                        <Link to="/Findpage"> <button className="button-is-light" type="button" >
+                            <Link to="/Findpage"> <button className="button-is-light" type="button" >
                                 Find Room
                             </button>
                             </Link>  
