@@ -78,7 +78,7 @@ export default class Profile extends React.Component {
                 localStorage.clear();
                 this.setState({user:null,logout:true})
                 alert('Log Out Success')
-        })
+            })
         }
 
         onSubmit = async e => {
@@ -91,9 +91,8 @@ export default class Profile extends React.Component {
                 amountin: this.state.amountin,
                 status: true
             }
-
             if(String(this.state.status).localeCompare("navbar")!=0){
-                this.props.addBooing(room);
+                this.props.addBooking(room);
             }
             const exist = localStorage.getItem('token')
             if(exist!=null){
@@ -120,6 +119,9 @@ export default class Profile extends React.Component {
                 })
                 alert('Booking Success')
               }
+              this.setState({
+                  logout: false
+              })
           }
 
     render(){
@@ -190,7 +192,7 @@ export default class Profile extends React.Component {
                              <input type="checkbox" className="confirmSignin" name="confirmSignin" id= "checkBoxSign"/> 
                          </div>  
                         <div className="col-100">
-                            <input type="submit" value="SEND" onChange={this.onChange}/>
+                            <input type="submit" value="SEND" />
                          </div>
                       </form>
                       <div className="center">
