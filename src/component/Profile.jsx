@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../bookStyle.css'
 import axios from 'axios'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import NavbarSign from './NavbarSign'
+import NavbarProfile from './NavbarProfile'
 import Home from './Home';
 import Findpage from './Findpage'
 
@@ -18,17 +18,18 @@ export default class Profile extends React.Component {
             number : this.props.user.number,
             id : this.props.user.id,
             email : this.props.user.email,
-            amountin : this.props.listRoom[0].amountin,
-            checkin : this.props.listRoom[0].checkin,
-            checkout : this.props.listRoom[0].checkout,
+            amountin : this.props.thisRoom.amountin,
+            checkin : this.props.thisRoom.checkin,
+            checkout : this.props.thisRoom.checkout,
             ID: this.props.user._id,
-            room: this.props.listRoom[0].room,
+            room: this.props.thisRoom.room,
+            status: this.props.thisRoom.status,
             logout:false,
         }
     }
     
     onChange = (e) => {
-        const { name, value } = e.target
+        const { name, value } = e.target 
         this.setState({[name]: value})
     }
 
@@ -82,6 +83,18 @@ export default class Profile extends React.Component {
 
         onSubmit = async e => {
             e.preventDefault()
+            
+            const room = {
+                room: this.state.room,
+                checkin: this.state.checkin,
+                checkout: this.state.checkout,
+                amountin: this.state.amountin,
+                status: true
+            }
+
+            if(String(this.state.status).localeCompare("navbar")!=0){
+                this.props.addBooing(room);
+            }
             const exist = localStorage.getItem('token')
             if(exist!=null){
               const url = `https://cpelab-booking.herokuapp.com/hotelbook/users/edit/${this.state.ID}`
@@ -115,8 +128,8 @@ export default class Profile extends React.Component {
         }
         return(
             <div id="col-100">
-             <NavbarSign />
-             <div className = "center"> {/* ---------------------------------------------------------------- Sign in page  */}
+             <NavbarProfile />
+             <div className = "center" id="profile"> {/* ---------------------------------------------------------------- Sign in page  */}
                  <div className = "nameHotel" id="titleSign">
                      . p r o f i l e
                  </div> 
@@ -146,11 +159,11 @@ export default class Profile extends React.Component {
                              <input type="text" value={this.state.id} onChange={this.onChange}  name="id"/>
                          </div>  
                          <div className="col-25">
-                             <label className="forms"> Amount: </label>
+                             <label className="forms"> Room: </label>
                          </div>
                          <div className="col-75">
-                             <input type="text" value={this.state.amountin} onChange={this.onChange}  name="amountin"/>
-                         </div>  
+                             <input type="text" value={this.state.room} onChange={this.onChange}  name="room"/>
+                         </div>
                          <div className="col-25">
                              <label className="forms"> Check-In: </label>
                          </div>
@@ -163,13 +176,20 @@ export default class Profile extends React.Component {
                          <div className="col-75">
                              <input type="text" value={this.state.checkout} onChange={this.onChange}  name="checkout"/>
                          </div>  
+                         
                          <div className="col-25">
-                             <label className="forms"> Room: </label>
+                             <label className="forms"> Amount: </label>
                          </div>
                          <div className="col-75">
-                             <input type="text" value={this.state.room} onChange={this.onChange}  name="room"/>
+                             <input type="text" value={this.state.amountin} onChange={this.onChange}  name="amountin"/>
+                         </div>
+                         <div className="confirmSigninLabel">
+                             <label for="confirmSignin" > My information is correct.</label>     
+                         </div>
+                         <div className="checkbox" >
+                             <input type="checkbox" className="confirmSignin" name="confirmSignin" id= "checkBoxSign"/> 
                          </div>  
-                            <div className="col-100">
+                        <div className="col-100">
                             <input type="submit" value="SEND" onChange={this.onChange}/>
                          </div>
                       </form>

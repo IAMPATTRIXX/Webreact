@@ -31,7 +31,10 @@ export default class Findpage extends React.Component {
                 number: "",
                 id: "",
                 email:this.props.email,
-                amount:[]
+                amountin: "",
+                checkin: "",
+                checkout: "",
+                room: ""
             },
             chooseRoom : 
                 {
@@ -50,6 +53,15 @@ export default class Findpage extends React.Component {
                 checkout: "",
                 amountin: "",
                 status: true
+            },
+            
+            navbarRoom:{
+                room: "",
+                checkin: "",
+                checkout: "",
+                amountin: "",
+                navbar: false,
+                status: "navbar"
             }
         }
     }
@@ -91,8 +103,6 @@ export default class Findpage extends React.Component {
             for(let i=0; i<this.state.users.length; i++){
                 let usersE = String(this.state.users[i].email)
                 if((userE).localeCompare(usersE)==0){
-                    amount = this.state.users[i].amount
-                    console.log(amount)
                     this.setState({
                         user:{
                             _id: this.state.users[i]._id,
@@ -101,7 +111,10 @@ export default class Findpage extends React.Component {
                             number: this.state.users[i].number,
                             id: this.state.users[i].id,
                             email: this.state.user.email,
-                            amount: amount
+                            amountin: this.state.users[i].amountin,
+                            checkin: this.state.users[i].checkin,
+                            checkout: this.state.users[i].checkout,
+                            room: this.state.users[i].checkout,
                         }
                     })
                     break;
@@ -147,10 +160,7 @@ export default class Findpage extends React.Component {
         console.log(date.localeCompare(checkout))
         console.log(checkin.localeCompare(checkout))
 
-        if(amount <= 0 ){
-            alert('Please input new amount')
-            document.getElementById('amount').focus()
-        }else{
+        
             let type = document.getElementById('typeroom').value
             let match = true
             switch(type){
@@ -176,14 +186,14 @@ export default class Findpage extends React.Component {
                     }
                     break;
                 case "Suit":
-                    if(Number(document.getElementById('amount').value)>2){
+                    if(Number(document.getElementById('amount').value)>4){
                         alert("Number of people not match of size room")
                         match = false
                         document.getElementById('amount').focus()
                     }
                     break;
                 case "Family":
-                    if(Number(document.getElementById('amount').value)>2){
+                    if(Number(document.getElementById('amount').value)>4){
                         alert("Number of people not match of size room")
                         match = false
                         document.getElementById('amount').focus()
@@ -205,7 +215,7 @@ export default class Findpage extends React.Component {
                 
             })
             feild = true
-        }
+        
     
         const { name, value } = e.target
         this.setState({
@@ -287,15 +297,15 @@ export default class Findpage extends React.Component {
                     }
                 }
                 for(let i = 0; i<this.state.users.length; i++){
-                    if(this.state.users[i].amount.room != null){
-                        for(let j = 0; j<this.state.users[i].amount.length; j++){
-                            let users = this.state.users[i].amount[j].room
+                    if(this.state.users[i].room != null){
+                        // for(let j = 0; j<this.state.users[i].amount.length; j++){
+                            let users = this.state.users[i].room
                             if((chooseRoom).localeCompare(users)==0){
                                 console.log("same room" + arrRoom[randomRoom].room + " " + users)
                                 findoutList = true
                                 break;
                             }
-                        }
+                        // }
                     }else{
                         break;
                     }
@@ -336,8 +346,8 @@ export default class Findpage extends React.Component {
                     }
                 }
                 for(let i = 0; i<this.state.users.length; i++){
-                    let users = String(this.state.users[i].amount.checkin)
-                    let usersout = String(this.state.users[i].amount.checkout)
+                    let users = String(this.state.users[i].checkin)
+                    let usersout = String(this.state.users[i].checkout)
                     if((chooseRoomIn).localeCompare(users)==0 && (chooseRoomOut).localeCompare(usersout)==0){
                         console.log("same room" + arrRoom[randomRoom].room + " " + users)
                         findoutList2 = true
@@ -345,16 +355,16 @@ export default class Findpage extends React.Component {
                     }
                 }
                 for(let i = 0; i<this.state.users.length; i++){
-                    if(this.state.users[i].amount.room != null){
-                        for(let j = 0; j<this.state.users[i].amount.length; j++){
-                            let users = String(this.state.users[i].amount[j].checkin)
-                            let usersout = String(this.state.users[i].amount[j].checkout)
+                    if(this.state.users[i].room != null){
+                        // for(let j = 0; j<this.state.users[i].amount.length; j++){
+                            let users = String(this.state.users[i].checkin)
+                            let usersout = String(this.state.users[i].checkout)
                             if((chooseRoomIn).localeCompare(users)==0 && (chooseRoomOut).localeCompare(usersout)==0){
                                 console.log("same room" + arrRoom[randomRoom].room + " " + users)
                                 findoutList = true
                                 break;
                             }
-                        }
+                        // }
                     }else{
                         break;
                     }
@@ -395,6 +405,19 @@ export default class Findpage extends React.Component {
             //use that room find data in rooms state .get data and up to chooseRoom
         }
         
+    }
+
+    navbarSubmit = (bool) => {
+        this.setState({
+            navbarRoom:{
+                room: this.state.user.room,
+                checkin: this.state.user.checkin,
+                checkout: this.state.user.checkout,
+                amountin: this.state.user.amountin,
+                navbar: bool
+            },
+            
+        })
     }
 
     addBooking = (room) => {
@@ -438,7 +461,10 @@ export default class Findpage extends React.Component {
                         surname: this.state.user.surname,
                         id: this.state.user.id,
                         email: this.state.user.email,
-                        amount: amount
+                        amountin: isroom.amountin,
+                        checkin: isroom.checkin,
+                        checkout: isroom.checkout,
+                        room: isroom.room
                     }
                 })
              break;
@@ -455,17 +481,17 @@ export default class Findpage extends React.Component {
         //     id: this.state.user.id,
         //     email: this.state.user.email,
         
-        axios.put('https://cpelab-booking.herokuapp.com/hotelbook/users/addRoom/'+ strId,{
-            amount: {
-                amountin: Number(room.amountin),
-                checkin: String(room.checkin),
-                checkout: String(room.checkout),
-                room: String(room.room)
-            }
-        })
-            .catch((err) => {
-            console.log(err)
-            })
+        // axios.put('https://cpelab-booking.herokuapp.com/hotelbook/users/addRoom/'+ strId,{ addBook
+        //     amount: {
+        //         amountin: Number(room.amountin),
+        //         checkin: String(room.checkin),
+        //         checkout: String(room.checkout),
+        //         room: String(room.room)
+        //     }
+        // })
+        //     .catch((err) => {
+        //     console.log(err)
+        //     })
         
             console.log(this.state.user)
             console.log(room)
@@ -487,22 +513,47 @@ export default class Findpage extends React.Component {
             number: this.state.user.number,
             id: this.state.user.id,
             email: this.state.user.email,
-            amount: []
+            amountin: 0,
+            checkin: "",
+            checkout: "",
+            room: ""
+        })
+        .catch((err)=>{console.log(err)})
+
+        this.setState({
+            user:{
+                _id: this.state.user._id,
+                name: this.state.user.name,
+                surname: this.state.user.surname,
+                id: this.state.user.id,
+                email: this.state.user.email,
+                amountin: 0,
+                checkin: "",
+                checkout: "",
+                room: "",
+            }
         })
     }
 
     render(){
         if(!this.state.thisRoom.status){
             return (
-              <Profile listRoom={this.state.thisRoom}
-                       user={this.state.user}
-                       addBooking={this.addBooking}
+              <Profile  user={this.state.user}
+                        thisRoom={this.state.thisRoom}
+                        addBooking={this.addBooking}
               />
           )
+        }else if(this.state.navbarRoom.navbar){
+            return(
+                <Profile user={this.state.user}
+                         thisRoom={this.state.navbarRoom}   
+                         navbarSubmit={this.navbarSubmit}
+                />
+            )
         } 
         return  (
             <div >
-                <NavbarLogin />
+                <NavbarLogin navbarSubmit={this.navbarSubmit}/>
                 <div className = "center" >
                     
                         <div className = "nameHotel"> {/* --------------------------------------------------------- find page */}
@@ -577,7 +628,7 @@ export default class Findpage extends React.Component {
                                                    addBooking = {this.addBooking}
                                                    
                                         />  */}
-                                        <Link to="/Profile"><button className="arrom" type="button" id="arrow" onClick={()=>{
+                                        <button className="arrom" id="arrow" onClick={()=>{
                                             this.setState({
                                                 thisRoom:{
                                                     room: room.room,
@@ -591,7 +642,7 @@ export default class Findpage extends React.Component {
                                             }>
                                                 <Arrow fontSize="30px" color="#31312E" />
                                             </button>
-                                        </Link>
+                                        
                                         
                                     </td>
                                 </tr>)}
