@@ -9,19 +9,24 @@ import Findpage from './Findpage'
 
 
 export default class Profile extends React.Component {
-    state = {
-        name : '',
-        surname : '',
-        number : '',
-        id : '',
-        email : '',
-        amountin : '',
-        checkin : '',
-        checkout : '',
-        ID:'',
-        room:'',
-        logout:false,
+
+    constructor(props){
+        super(props)
+        this.state = {
+            name : this.props.user.name,
+            surname : this.props.user.surname,
+            number : this.props.user.number,
+            id : this.props.user.id,
+            email : this.props.user.email,
+            amountin : this.props.listRoom[0].amountin,
+            checkin : this.props.listRoom[0].checkin,
+            checkout : this.props.listRoom[0].checkout,
+            ID: this.props.user._id,
+            room: this.props.listRoom[0].room,
+            logout:false,
+        }
     }
+    
     onChange = (e) => {
         const { name, value } = e.target
         this.setState({[name]: value})

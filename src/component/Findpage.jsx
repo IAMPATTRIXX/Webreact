@@ -8,6 +8,7 @@ import NavbarLogin from './NavbarLogin'
 import { FormErrors } from './FormErrors';
 import Profile from './Profile'
 import { Link } from 'react-router-dom';
+import Arrow from 'react-ionicons/lib/IosArrowDropright'
 
 
 var amount = []
@@ -43,7 +44,13 @@ export default class Findpage extends React.Component {
             listRoom : [],
             formErrors: {amountin: ''},
             amountinlValid: false,
-            
+            thisRoom : {
+                room: "",
+                checkin: "",
+                checkout: "",
+                amountin: "",
+                status: true
+            }
         }
     }
     validateField(fieldName, value) {
@@ -485,6 +492,14 @@ export default class Findpage extends React.Component {
     }
 
     render(){
+        if(!this.state.thisRoom.status){
+            return (
+              <Profile listRoom={this.state.thisRoom}
+                       user={this.state.user}
+                       addBooking={this.addBooking}
+              />
+          )
+        } 
         return  (
             <div >
                 <NavbarLogin />
@@ -557,15 +572,26 @@ export default class Findpage extends React.Component {
                             </td>
         
                                     <td className = "iconArrow">
-                                        {/* <ModalTest user={this.state.user}
+                                    {/* <ModalTest user={this.state.user}
                                                    room={room}
                                                    addBooking = {this.addBooking}
                                                    
-                                        /> */}
-                                        <Link to="/Profile"><button className="button-is-light" type="button" >
-                                            Book
-                                        </button>
-                            </Link>
+                                        />  */}
+                                        <Link to="/Profile"><button className="arrom" type="button" id="arrow" onClick={()=>{
+                                            this.setState({
+                                                thisRoom:{
+                                                    room: room.room,
+                                                    checkin: room.checkin,
+                                                    checkout: room.checkout,
+                                                    amountin: room.amountin,
+                                                    status: false,
+                                                }
+                                            })
+                                                }
+                                            }>
+                                                <Arrow fontSize="30px" color="#31312E" />
+                                            </button>
+                                        </Link>
                                         
                                     </td>
                                 </tr>)}
