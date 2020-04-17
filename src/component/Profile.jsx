@@ -51,10 +51,10 @@ export default class Profile extends React.Component {
                     number:  res.data.user.number,
                     id:  res.data.user.id,
                     email:  res.data.user.email,
-                    amountin: res.data.user.amountin,
-                    checkin:res.data.user.checkin,
-                    checkout:res.data.user.checkout,
-                    room : res.data.user.room,
+                    // amountin: res.data.user.amountin,
+                    // checkin:res.data.user.checkin,
+                    // checkout:res.data.user.checkout,
+                    // room : res.data.user.room,
                     ID : res.data.user._id,
                 })
                 localStorage.setItem('Status','Fucking Fina Time 2')
@@ -98,27 +98,24 @@ export default class Profile extends React.Component {
             if(exist!=null){
               const url = `https://cpelab-booking.herokuapp.com/hotelbook/users/edit/${this.state.ID}`
               const data = {
-                "name": this.state.name,
-                "surname": this.state.surname,
-                "number": this.state.number,
-                "id": this.state.id,
-                "amountin": this.state.amountin,
-                "checkin":this.state.checkin,
-                "checkout":this.state.checkout,
-                "room":this.state.room
+                "name": String(this.state.name),
+                "surname": String(this.state.surname),
+                "number": String(this.state.number),
+                "id": String(this.state.id),
+                "amountin": Number(this.state.amountin),
+                "checkin":String(this.state.checkin),
+                "checkout":String(this.state.checkout),
+                "room":String(this.state.room)
               }
               await axios.put(url,data,{
                   headers: {
                     'Authorization': `Bearer ${exist}`
                   }
                 })
-                .then
+                
                 // (res => {window.location.reload(false)}).catch(error=>{alert(error)})
                 alert('Booking Success')
               }
-              this.setState({
-                  logout: false
-              })
           }
 
     render(){

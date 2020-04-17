@@ -26,10 +26,6 @@ function NavbarLogin(props) {
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="buttons">
-                        <Link to="/Home"> <button className="button-is-light" type="button" onClick={props.logout}>
-                                Logout
-                            </button>
-                            </Link>  
                         </div>
                     </div>
                 </div>

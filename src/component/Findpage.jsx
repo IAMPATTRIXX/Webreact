@@ -228,6 +228,46 @@ export default class Findpage extends React.Component {
         this.userID()
         console.log(this.state.chooseRoom)
 
+        if(document.getElementById('typeroom').value!=="" && this.state.user.room != ""){
+            let type = ""
+            let room = this.state.user.room
+            let prize = 0
+            if(this.state.user.room!=''){
+                    if(room.indexOf('R')!=-1){
+                    type = "Superior"
+                    prize = 1000
+                }else if(room.indexOf('D')!=-1){
+                    type = "Delux"
+                    prize = 2000
+                }else if(room.indexOf('F')!=-1){
+                    type = "Family"
+                    prize = 5000
+                }else if(room.indexOf('S5')!=-1){
+                    type = "Sweet"
+                    prize = 4000
+                }else if(room.indexOf('S7')!=-1){
+                    type = "Suit"
+                    prize = 7000
+                }
+
+                let roomUser = {
+                    room: this.state.user.room,
+                    checkin: this.state.user.checkin,
+                    checkout: this.state.user.checkout,
+                    amountin: this.state.user.amountin,
+                    type: type,
+                    prize: prize,
+                    status: true  
+                }
+                unbookRoom.push(roomUser)
+                this.setState({
+                    listRoom: unbookRoom
+                })
+
+            }
+            
+        }
+
     }
 
 
@@ -500,25 +540,32 @@ export default class Findpage extends React.Component {
     }
 
 
-    onChangeStatus = e =>{
+    onChangeStatus = async e =>{
         e.preventDefault();
-        var today = new Date();
-        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-        console.log(date)
-
         let strId = this.state.user._id
-        axios.put('https://cpelab-booking.herokuapp.com/hotelbook/users/edit/'+ strId,{
+        const exist = localStorage.getItem('token')
+
+        if(exist!=null){
+        await axios.put(`https://cpelab-booking.herokuapp.com/hotelbook/users/edit/${this.state.user._id}`,{
             name: this.state.user.name,
             surname:this.state.user.surname,
             number: this.state.user.number,
             id: this.state.user.id,
-            email: this.state.user.email,
             amountin: 0,
             checkin: "",
             checkout: "",
             room: ""
-        })
-        .catch((err)=>{console.log(err)})
+        },{
+            headers: {
+                'Authorization': `Bearer ${exist}`
+            }
+        }).then(res => {
+            window.location.reload(false)
+                }).catch(error=>{
+                  alert(error)
+                })
+        
+            
 
         this.setState({
             user:{
@@ -531,8 +578,11 @@ export default class Findpage extends React.Component {
                 checkin: "",
                 checkout: "",
                 room: "",
-            }
+            },
+            listRoom: [],
         })
+         alert('Cancel All reservation successed')
+        }
     }
 
     render(){
